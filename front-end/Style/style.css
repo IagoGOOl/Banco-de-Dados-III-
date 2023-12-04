@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+  font-family: Roboto;
+}
+
+.form-width {
+  width: 1250px;
+}
+
+#map {
+  height: 480px;
+  width: 100%;
+  background-color: #1f1e1e;
+  margin: 0;
+}
+
+.navbar {
+  background-color: rgb(203, 198, 198) !important;
+  padding: 25px 0;
+}
+
+#navbar-img {
+  height: 30px;
+  top: 15px;
+  padding-left: 10px;
+}
+
+@media (max-width: 768px) {
+  #navbarSupportedContent ul * {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+#navbar-img {
+  height: 70px;
+}
+
+.updates {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.add-btn {
+  margin-top: 5px;
+}
+
+.card-list {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin: 10px 0 10px 0;
+  padding: 10px 0 10px 0;
+}
+
+#tipo {
+  margin: 0;
+  padding: 0;
+}
+
+#id {
+  padding: 0;
+  margin: 0;
+  font-size: 5px;
+  color: white;
+}
+#title {
+  font-weight: 700;
+}
+
+.listar {
+  width: 50%;
+}

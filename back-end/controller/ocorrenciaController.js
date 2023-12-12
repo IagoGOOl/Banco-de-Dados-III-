@@ -80,7 +80,8 @@ async function buscarPorId(req, res) {
 }
 
 async function salvarRascunho(ocorrencia) {
-    // implementar aqui quando deus permitir
+    const key = `ocorrencia:rascunho:${ocorrencia.id}`;
+    client.set(key, JSON.stringify(ocorrencia), 'ex', 3600);
   }
 
 

@@ -9,6 +9,8 @@ const {
 	buscarPorId,
 	atualizarCordenada,
 	deletarCordenada,
+	salvarRascunho,
+
 } = require('../controller/ocorrenciaController');
 
 router.route('/ocorrencia').post(criaOcorrencia).get(listarOcorrencia);

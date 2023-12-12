@@ -79,10 +79,16 @@ async function buscarPorId(req, res) {
 	res.status(200).json(ocorrencia);
 }
 
+async function salvarRascunho(ocorrencia) {
+    // implementar aqui quando deus permitir
+  }
+
+
 module.exports = {
 	criaOcorrencia,
 	listarOcorrencia,
 	buscarPorId,
 	atualizarCordenada,
 	deletarCordenada,
+	salvarRascunho
 };

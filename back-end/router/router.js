@@ -17,7 +17,6 @@ router.route('/ocorrencia').post(criaOcorrencia).get(listarOcorrencia);
 
 router
 	.route('/ocorrencia/:id')
-	.route('/ocorrencia/rascunho')
 	.get(buscarPorId)
 	.patch(atualizarCordenada)
 	.delete(deletarCordenada);

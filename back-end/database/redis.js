@@ -1,4 +1,14 @@
 require('dotenv').config();
-const redis = require('redis');
+import { createClient } from 'redis';
 
-const client = redis.createClient();
+const client = createClient({
+    password: 'CrNGnmdsOR2KDPafryM60wgigNIjjGAY',
+    socket: {
+        host: 'redis-12732.c238.us-central1-2.gce.cloud.redislabs.com',
+        port: 12732
+    }
+});
+
+client.on("connect", () => {
+  console.log("Conectado ao Redis Cloud");
+});

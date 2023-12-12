@@ -50,11 +50,9 @@ async function atualizarCordenada(req, res) {
 	const { body } = req;
 
 	try {
-		const ocorrencia = await ocorrenciaModel.findByIdAndUpdate(
-			id,
-			body,
-			{ new: true }
-		);
+		const ocorrencia = await ocorrenciaModel.findByIdAndUpdate(id, body, {
+			new: true,
+		});
 
 		if (!ocorrencia) {
 			return res.status(404).json({ erro: 'ocorrencia não encontrado' });
@@ -66,7 +64,6 @@ async function atualizarCordenada(req, res) {
 		return res.status(500).json({ erro: 'Erro interno do servidor' });
 	}
 }
-
 
 async function buscarPorId(req, res) {
 	const ocorrencia = await ocorrenciaModel.findById(req.params.id);
@@ -80,10 +77,21 @@ async function buscarPorId(req, res) {
 }
 
 async function salvarRascunho(ocorrencia) {
-    const key = `ocorrencia:rascunho:${ocorrencia.id}`;
-    client.set(key, JSON.stringify(ocorrencia), 'ex', 3600);
-  }
-
+	const key = `ocorrencia:rascunho:${ocorrencia.id}`;
+	const { titulo, tipo, data, hora, lat, lng } = req.body;
+	const cordenada = {
+		type: 'Point',
+		coordinates: [lat, lng],
+	};
+	const ocorrencia = new ocorrenciaModel({
+		titulo,
+		tipo,
+		data,
+		hora,
+		cordenada,
+	});
+	client.set(key, JSON.stringify(ocorrencia), 'ex', 3600);
+}
 
 module.exports = {
 	criaOcorrencia,
@@ -91,5 +99,5 @@ module.exports = {
 	buscarPorId,
 	atualizarCordenada,
 	deletarCordenada,
-	salvarRascunho
+	salvarRascunho,
 };

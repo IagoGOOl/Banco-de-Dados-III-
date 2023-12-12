@@ -1,7 +1,7 @@
 let map;
 let marker;
 
-let center = { lng: -38.558930105104125,  lat: -6.888463202449027};
+let center = { lng: -38.558930105104125, lat: -6.888463202449027 };
 
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
@@ -29,6 +29,32 @@ function addMarker(evt) {
 }
 
 function salvar() {
+	let select = document.getElementById('tipo');
+	const tipo = select.options[select.selectedIndex].value;
+	const obj = {
+		titulo: document.getElementById('titulo').value,
+		tipo: tipo,
+		data: document.getElementById('data').value,
+		hora: document.getElementById('hora').value,
+		lat: marker.getPosition().lat(),
+		lng: marker.getPosition().lng(),
+	};
+
+	fetch('http://localhost:3000/ocorrencia', {
+		method: 'POST',
+		headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(obj),
+	})
+		.then((response) => {
+			alert('Salvo com sucesso');
+		})
+		.catch((error) => alert('Falha ao salvar!'));
+}
+
+function salvarRascunho() {
 	let select = document.getElementById('tipo');
 	const tipo = select.options[select.selectedIndex].value;
 	const obj = {

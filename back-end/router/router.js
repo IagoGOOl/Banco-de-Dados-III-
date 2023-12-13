@@ -10,6 +10,7 @@ const {
 	atualizarCordenada,
 	deletarCordenada,
 	salvarRascunho,
+	
 
 } = require('../controller/ocorrenciaController');
 

@@ -1,5 +1,9 @@
 const ocorrenciaModel = require('../model/Ocorrencia');
-const { client } = require('../database/redis');
+
+
+
+
+
 
 
 async function listarOcorrencia(req, res) {
@@ -79,8 +83,8 @@ async function buscarPorId(req, res) {
 }
 
 async function salvarRascunho(req, res) {
-	const nome = req.body.nome;
-  	const key = `ocorrencia:rascunho:${nome}`;
+	const nomeTeste = req.nome;
+  	const key = `ocorrencia:rascunho:${nomeTeste}`;
 	const { titulo, tipo, data, hora, lat, lng } = req.body;
 	const cordenada = {
 		type: 'Point',

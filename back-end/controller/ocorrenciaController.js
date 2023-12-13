@@ -82,7 +82,7 @@ async function buscarPorId(req, res) {
 	res.status(200).json(ocorrencia);
 }
 
-async function salvarRascunho(req, res) {
+/*async function salvarRascunho(req, res) {
 	const nomeTeste = req.nome;
   	const key = `ocorrencia:rascunho:${nomeTeste}`;
 	const { titulo, tipo, data, hora, lat, lng } = req.body;
@@ -98,7 +98,56 @@ async function salvarRascunho(req, res) {
 		cordenada,
 	});
 	client.set(key, JSON.stringify(ocorrenciaRascunho), 'ex', 3600);
-}
+}*/
+
+async function salvarRascunho(req, res) {
+	const nomeTeste = req.nome;
+	const key = `ocorrencia:rascunho:${nomeTeste}`;
+	const { titulo, tipo, data, hora, lat, lng } = req.body;
+	const cordenada = {
+	  type: 'Point',
+	  coordinates: [lat, lng],
+	};
+	const ocorrenciaRascunho = new ocorrenciaModel({
+	  titulo,
+	  tipo,
+	  data,
+	  hora,
+	  cordenada,
+	});
+  
+	const redis = require("redis");
+
+
+	const client = redis.createClient({
+		password: '4imBPh4k2va56sQc4bDpv0hqyxDjEBhq',
+		socket: {
+			host: 'redis-17641.c321.us-east-1-2.ec2.cloud.redislabs.com',
+			port: 17641
+    }
+	});
+
+	await client.connect();
+  
+	client.set(key, JSON.stringify(ocorrenciaRascunho), 'ex', 3600);
+  }
+
+
+  //testando a função salvar rascunho
+  const req = {
+	nome: 'ocorrencia X',
+	body: {
+	  titulo: 'Ocorrência de teste',
+	  tipo: 'Roubo',
+	  data: new Date(),
+	  hora: '12:00',
+	  lat: -15.826863,
+	  lng: -47.982304,
+	},
+  };
+  
+  salvarRascunho(req);
+  console.log('salvo')
 
 module.exports = {
 	criaOcorrencia,

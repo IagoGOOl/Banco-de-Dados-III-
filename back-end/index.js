@@ -22,8 +22,8 @@ app.use(cors());
 app.use(router);
 
 const startup = async() => {
-	await client.connect();
-	console.log('conectado ao redis')
+	//await client.connect();
+	//console.log('conectado ao redis')
 	app.listen(3000, () => {
 		console.log('serve ON');
 	});

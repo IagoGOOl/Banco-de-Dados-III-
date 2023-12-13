@@ -9,6 +9,7 @@ const {
 	buscarPorId,
 	atualizarCordenada,
 	deletarCordenada,
+	salvarRascunho,
 } = require('../controller/ocorrenciaController');
 
 router.route('/ocorrencia').post(criaOcorrencia).get(listarOcorrencia);
@@ -18,5 +19,7 @@ router
 	.get(buscarPorId)
 	.patch(atualizarCordenada)
 	.delete(deletarCordenada);
+
+router.route('/ocorrencia').post(salvarRascunho);
 
 module.exports = { router };

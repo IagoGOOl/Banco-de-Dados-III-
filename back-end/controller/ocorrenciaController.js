@@ -1,4 +1,6 @@
 const ocorrenciaModel = require('../model/Ocorrencia');
+const { client } = require('../database/redis');
+
 
 async function listarOcorrencia(req, res) {
 	const policia = await ocorrenciaModel.find({});
@@ -76,21 +78,22 @@ async function buscarPorId(req, res) {
 	res.status(200).json(ocorrencia);
 }
 
-async function salvarRascunho(ocorrencia) {
-	const key = `ocorrencia:rascunho:${ocorrencia.id}`;
+async function salvarRascunho(req, res) {
+	const nome = req.body.nome;
+  	const key = `ocorrencia:rascunho:${nome}`;
 	const { titulo, tipo, data, hora, lat, lng } = req.body;
 	const cordenada = {
 		type: 'Point',
 		coordinates: [lat, lng],
 	};
-	const ocorrencia = new ocorrenciaModel({
+	const ocorrenciaRascunho = new ocorrenciaModel({
 		titulo,
 		tipo,
 		data,
 		hora,
 		cordenada,
 	});
-	client.set(key, JSON.stringify(ocorrencia), 'ex', 3600);
+	client.set(key, JSON.stringify(ocorrenciaRascunho), 'ex', 3600);
 }
 
 module.exports = {

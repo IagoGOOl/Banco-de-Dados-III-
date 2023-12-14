@@ -6,7 +6,6 @@
     "ioredis": "^5.3.2",
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.1",
-    "mongose": "^0.0.2-security",
     "nodemon": "^3.0.1",
     "redis": "^4.6.11"
   },

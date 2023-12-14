@@ -65,7 +65,7 @@
 			</div>
 			<div>
 				<label for="tipo" class="form-label">Tipo da ocorrência</label>
-				<select id="tipo" class="form-select">
+				<select id="tipo" class="form-select p-2">
 					<option value="assalto">assalto</option>
 					<option value="furto">furto</option>
 					<option value="homicidio">homicidio</option>
@@ -84,6 +84,8 @@
 				Adicionar
 			</button>
 			<button class="btn btn-success add-btn" onclick="salvarRascunho()"> Rascunho </button>
+			<button class="btn btn-success add-btn" onclick="recuperarRascunho()"> Recuperar Rascunho </button>
+			<div id="draftsDiv"></div>
 		</div>
 
 	</div>
@@ -254,8 +256,7 @@
 
 	<script src="./script.js"></script>
 	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
-		defer></script>
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd54PM31e4CjH9l0JoJO6H5k0fyMzDAlM&callback=initMap"></script>
 	<script src="ocorrenciaList.js"></script>
 
 </body>
